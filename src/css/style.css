@@ -30,6 +30,11 @@ body {
     color: white;
 }
 
+.estiloGeralBotoes--filtrarVermelhas {
+    background-color: red;
+    color: white;
+}
+
 .containerBuscaPorNome {
     display: flex;
     justify-content: space-between;

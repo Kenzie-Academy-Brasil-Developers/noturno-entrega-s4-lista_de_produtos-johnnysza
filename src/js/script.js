@@ -34,6 +34,7 @@ const filtrarPorHortifruti = () => {
         return produto.secao === 'Hortifruti';
     });
     montarListaProdutos(listaHortifruti);
+    alterarPreco(listaHortifruti)
 }
 
 const botaoMostrarHortifruti = document.querySelector('.estiloGeralBotoes--filtrarHortifruti');
@@ -44,6 +45,7 @@ const filtrarTodos = () => {
         return produto
     })
     montarListaProdutos(listaTodos)
+    alterarPreco(listaTodos)
 }
 
 const botaoMostrarTodos = document.querySelector('.estiloGeralBotoes--mostrarTodos');
@@ -54,16 +56,29 @@ const filtrarBusca = () => {
     const listaBusca = produtos.filter((produto) => {
         return produto.nome.toLowerCase() === campoBusca.toLowerCase()
     })
-    montarListaProdutos(listaBusca)
+    montarListaProdutos(listaBusca);
+    alterarPreco(listaBusca);
 }
 
 const botaoBusca = document.querySelector('.estiloGeralBotoes--botaoBuscaPorNome');
 botaoBusca.addEventListener('click', filtrarBusca);
 
-// const alterarPreco = () => {
-//     let precoTotalDosProdutos = document.getElementById('precoTotal');
-//     const precoAlterado = produtos.filter((produto) => {
-        
-        
-//     })
-// }
+const filtrarVermelhas = () => {
+    const vermelhas = produtos.filter((produto) => {
+    let frutas = produto.nome === "Morango" || produto.nome === "Maçã";
+        return frutas
+    })
+    montarListaProdutos(vermelhas)
+    alterarPreco(vermelhas)
+}
+
+const botaoVermelhas = document.querySelector('.estiloGeralBotoes--filtrarVermelhas');
+botaoVermelhas.addEventListener('click', filtrarVermelhas)
+
+const alterarPreco = (prod) => {
+    let precoTotalDosProdutos = document.getElementById('precoTotal');
+    let preco = prod.reduce((acc, produto) => {
+        return acc + produto.preco
+    },0 )
+    precoTotalDosProdutos.innerText = preco
+}
